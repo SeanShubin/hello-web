@@ -2,6 +2,9 @@ package com.seanshubin.hello.web;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
 public class HttpServletTransformer {
     public static Request transformRequest(HttpServletRequest httpServletRequest) {
@@ -21,7 +24,16 @@ public class HttpServletTransformer {
     public static RequestValue transformRequestValue(HttpServletRequest httpServletRequest) {
         String method = httpServletRequest.getMethod();
         String uriString = httpServletRequest.getRequestURI();
-        RequestValue request = new RequestValue(method, uriString);
+        String query = httpServletRequest.getQueryString();
+        Enumeration headerNames = httpServletRequest.getHeaderNames();
+        List<NameValue> headers = new ArrayList<>();
+        while (headerNames.hasMoreElements()) {
+            String name = (String) headerNames.nextElement();
+            String value = httpServletRequest.getHeader(name);
+            NameValue header = new NameValue(name, value);
+            headers.add(header);
+        }
+        RequestValue request = new RequestValue(method, uriString, query, headers);
         return request;
     }
 

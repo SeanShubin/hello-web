@@ -1,95 +1,154 @@
 package com.seanshubin.hello.web;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletInputStream;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.security.Principal;
+import java.util.Enumeration;
 import java.util.Locale;
+import java.util.Map;
 
-public class HttpServletRequestNotImplemented implements HttpServletResponse {
+public abstract class HttpServletRequestNotImplemented implements HttpServletRequest {
     @Override
-    public void addCookie(Cookie cookie) {
+    public String getAuthType() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public boolean containsHeader(String s) {
+    public Cookie[] getCookies() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public String encodeURL(String s) {
+    public long getDateHeader(String name) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public String encodeRedirectURL(String s) {
+    public String getHeader(String name) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public String encodeUrl(String s) {
+    public Enumeration getHeaders(String name) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public String encodeRedirectUrl(String s) {
+    public Enumeration getHeaderNames() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void sendError(int i, String s) throws IOException {
+    public int getIntHeader(String name) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void sendError(int i) throws IOException {
+    public String getMethod() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void sendRedirect(String s) throws IOException {
+    public String getPathInfo() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setDateHeader(String s, long l) {
+    public String getPathTranslated() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void addDateHeader(String s, long l) {
+    public String getContextPath() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setHeader(String s, String s1) {
+    public String getQueryString() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void addHeader(String s, String s1) {
+    public String getRemoteUser() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setIntHeader(String s, int i) {
+    public boolean isUserInRole(String role) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void addIntHeader(String s, int i) {
+    public Principal getUserPrincipal() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setStatus(int i) {
+    public String getRequestedSessionId() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setStatus(int i, String s) {
+    public String getRequestURI() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public StringBuffer getRequestURL() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public String getServletPath() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public HttpSession getSession(boolean create) {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public HttpSession getSession() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public boolean isRequestedSessionIdValid() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public boolean isRequestedSessionIdFromCookie() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public boolean isRequestedSessionIdFromURL() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public boolean isRequestedSessionIdFromUrl() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public Object getAttribute(String name) {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public Enumeration getAttributeNames() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
@@ -99,72 +158,132 @@ public class HttpServletRequestNotImplemented implements HttpServletResponse {
     }
 
     @Override
+    public void setCharacterEncoding(String env) throws UnsupportedEncodingException {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public int getContentLength() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
     public String getContentType() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public ServletOutputStream getOutputStream() throws IOException {
+    public ServletInputStream getInputStream() throws IOException {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public PrintWriter getWriter() throws IOException {
+    public String getParameter(String name) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setCharacterEncoding(String s) {
+    public Enumeration getParameterNames() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setContentLength(int i) {
+    public String[] getParameterValues(String name) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setContentType(String s) {
+    public Map getParameterMap() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setBufferSize(int i) {
+    public String getProtocol() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public int getBufferSize() {
+    public String getScheme() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void flushBuffer() throws IOException {
+    public String getServerName() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void resetBuffer() {
+    public int getServerPort() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public boolean isCommitted() {
+    public BufferedReader getReader() throws IOException {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void reset() {
+    public String getRemoteAddr() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setLocale(Locale locale) {
+    public String getRemoteHost() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public void setAttribute(String name, Object o) {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public void removeAttribute(String name) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
     public Locale getLocale() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public Enumeration getLocales() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public boolean isSecure() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public RequestDispatcher getRequestDispatcher(String path) {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public String getRealPath(String path) {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public int getRemotePort() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public String getLocalName() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public String getLocalAddr() {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    @Override
+    public int getLocalPort() {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 }

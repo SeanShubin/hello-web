@@ -7,89 +7,118 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
 
-public class HttpServletResponseNotImplemented implements HttpServletResponse {
+public abstract class HttpServletResponseNotImplemented implements HttpServletResponse {
     @Override
     public void addCookie(Cookie cookie) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public boolean containsHeader(String s) {
+    public boolean containsHeader(String name) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public String encodeURL(String s) {
+    public String encodeURL(String url) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public String encodeRedirectURL(String s) {
+    public String encodeRedirectURL(String url) {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    /**
+     * @deprecated	As of version 2.1, use encodeURL(String url) instead
+     *
+     * @param	url	the url to be encoded.
+     * @return		the encoded URL if encoding is needed;
+     * 			the unchanged URL otherwise.
+     */
+
+    @Override
+    public String encodeUrl(String url) {
+        throw new UnsupportedOperationException("Not Implemented!");
+    }
+
+    /**
+     * @deprecated	As of version 2.1, use
+     *			encodeRedirectURL(String url) instead
+     *
+     * @param	url	the url to be encoded.
+     * @return		the encoded URL if encoding is needed;
+     * 			the unchanged URL otherwise.
+     */
+
+    @Override
+    public String encodeRedirectUrl(String url) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public String encodeUrl(String s) {
+    public void sendError(int sc, String msg) throws IOException {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public String encodeRedirectUrl(String s) {
+    public void sendError(int sc) throws IOException {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void sendError(int i, String s) throws IOException {
+    public void sendRedirect(String location) throws IOException {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void sendError(int i) throws IOException {
+    public void setDateHeader(String name, long date) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void sendRedirect(String s) throws IOException {
+    public void addDateHeader(String name, long date) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setDateHeader(String s, long l) {
+    public void setHeader(String name, String value) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void addDateHeader(String s, long l) {
+    public void addHeader(String name, String value) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setHeader(String s, String s1) {
+    public void setIntHeader(String name, int value) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void addHeader(String s, String s1) {
+    public void addIntHeader(String name, int value) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setIntHeader(String s, int i) {
+    public void setStatus(int sc) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
-    @Override
-    public void addIntHeader(String s, int i) {
-        throw new UnsupportedOperationException("Not Implemented!");
-    }
+    /**
+     * @deprecated As of version 2.1, due to ambiguous meaning of the
+     * message parameter. To set a status code
+     * use <code>setStatus(int)</code>, to send an error with a description
+     * use <code>sendError(int, String)</code>.
+     *
+     * Sets the status code and message for this response.
+     *
+     * @param	sc	the status code
+     * @param	sm	the status message
+     */
 
     @Override
-    public void setStatus(int i) {
-        throw new UnsupportedOperationException("Not Implemented!");
-    }
-
-    @Override
-    public void setStatus(int i, String s) {
+    public void setStatus(int sc, String sm) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
@@ -114,22 +143,22 @@ public class HttpServletResponseNotImplemented implements HttpServletResponse {
     }
 
     @Override
-    public void setCharacterEncoding(String s) {
+    public void setCharacterEncoding(String charset) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setContentLength(int i) {
+    public void setContentLength(int len) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setContentType(String s) {
+    public void setContentType(String type) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
     @Override
-    public void setBufferSize(int i) {
+    public void setBufferSize(int size) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
@@ -159,7 +188,7 @@ public class HttpServletResponseNotImplemented implements HttpServletResponse {
     }
 
     @Override
-    public void setLocale(Locale locale) {
+    public void setLocale(Locale loc) {
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
