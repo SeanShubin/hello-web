@@ -4,6 +4,10 @@ import org.junit.Test;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
+import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -39,12 +43,13 @@ public class HttpServletTransformerTest {
 
             @Override
             public Enumeration getHeaderNames() {
-                return Collections.enumeration(Arrays.asList("Accept", "Upgrade-Insecure-Requests", "Connection", "User-Agent", "Host", "Accept-Encoding", "AcceptLanguage"));
+                return Collections.enumeration(headers.stream().map(nameValue -> nameValue.name).collect(Collectors.toList()));
             }
 
             @Override
             public String getHeader(String name) {
-                return super.getHeader(name);
+                return headers.stream().filter(nameValue -> nameValue.name.equals(name)).findFirst().get().value;
+
             }
         };
 
@@ -82,4 +87,16 @@ public class HttpServletTransformerTest {
         }
         return Collections.unmodifiableList(headers);
     }
+
+    public Map<String, String> createMap(String... keysAndValues){
+        Map<String, String> result = new HashMap<>();
+        int index = 0;
+        while(index < keysAndValues.length / 2){
+            String key = keysAndValues[index * 2];
+            String value = keysAndValues[index*2+1];
+            result.put(key, value);
+        }
+        return result;
+    }
+
 }
