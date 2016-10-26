@@ -20,14 +20,6 @@ public class EntryPointServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<NameValue> headers = new ArrayList<>();
-        Enumeration headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            String name = (String) headerNames.nextElement();
-            String value = request.getHeader(name);
-            NameValue nameValue = new NameValue(name, value);
-            headers.add(nameValue);
-        }
         dependencyInjection.httpServletRequestHandler().handle(request, response);
     }
 }
