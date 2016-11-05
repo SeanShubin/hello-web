@@ -1,5 +1,6 @@
 package com.seanshubin.hello.web;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
 public class ArrayOfBytes {
@@ -31,5 +32,14 @@ public class ArrayOfBytes {
     @Override
     public int hashCode() {
         return Arrays.hashCode(bytes);
+    }
+
+    public String toStringUtf8() {
+        return new String(bytes, StandardCharsets.UTF_8);
+    }
+
+    public static ArrayOfBytes fromStringUtf8(String body) {
+        byte[] bytes = body.getBytes(StandardCharsets.UTF_8);
+        return new ArrayOfBytes(bytes);
     }
 }

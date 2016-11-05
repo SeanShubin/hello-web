@@ -2,7 +2,6 @@ package com.seanshubin.hello.web;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class UncheckedHttpServletResponse {
     public final HttpServletResponse delegate;
@@ -11,9 +10,9 @@ public class UncheckedHttpServletResponse {
         this.delegate = delegate;
     }
 
-    public PrintWriter getWriter() {
+    public UncheckedServletOutputStream getOutputStream() {
         try {
-            return delegate.getWriter();
+            return new UncheckedServletOutputStream(delegate.getOutputStream());
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage(), e);
         }

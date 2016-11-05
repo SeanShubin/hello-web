@@ -11,8 +11,8 @@ public class TopLevelHttpServletRequestHandler implements HttpServletRequestHand
     }
 
     public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
-        Request request = HttpServletTransformer.transformRequest(httpServletRequest);
-        String response = delegate.handle(request);
-        HttpServletTransformer.transformResponse(response, httpServletResponse);
+        RequestValue request = HttpServletRequestTransformer.transformRequest(httpServletRequest);
+        ResponseValue response = delegate.handle(request);
+        HttpServletResponseTransformer.transformResponse(response, httpServletResponse);
     }
 }

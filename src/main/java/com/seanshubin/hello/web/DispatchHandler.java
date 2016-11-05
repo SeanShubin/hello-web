@@ -5,23 +5,34 @@ import java.util.Map;
 import java.util.function.Function;
 
 public class DispatchHandler implements Handler {
-    private Map<String, Function<Request, String>> commandMap;
+    private Map<String, Function<String, String>> commandMap;
 
     public DispatchHandler() {
         commandMap = new HashMap<>();
-        commandMap.put("hello", this::sayHello);
-        commandMap.put("length", this::displayLength);
+        commandMap.put("/hello", this::sayHello);
+        commandMap.put("/length", this::displayLength);
     }
 
-    public String handle(Request request) {
-        return commandMap.get(request.command()).apply(request);
+    @Override
+    public ResponseValue handle(RequestValue request) {
+        String target = request.singleQueryParameter("target");
+        String result = lookupCommand(request.path).apply(target);
+        return ResponseValue.plainTextUtf8(result);
     }
 
-    private String displayLength(Request request) {
-        return String.format("length: %d", request.target().length());
+    private String displayLength(String target) {
+        return String.format("length: %d", target.length());
     }
 
-    private String sayHello(Request request) {
-        return String.format("Hello, %s!", request.target());
+    private String sayHello(String target) {
+        return String.format("Hello, %s!", target);
+    }
+
+    private Function<String, String> lookupCommand(String key) {
+        if (commandMap.containsKey(key)) {
+            return commandMap.get(key);
+        } else {
+            throw new RuntimeException(String.format("Key not found: %s", key));
+        }
     }
 }

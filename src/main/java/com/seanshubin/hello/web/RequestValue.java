@@ -43,4 +43,22 @@ public class RequestValue {
     public int hashCode() {
         return Objects.hash(method, path, query, headers);
     }
+
+    public String singleQueryParameter(String name) {
+        String[] pairs = query.split("&");
+        List<String> matches = new ArrayList<>();
+        for (String pair : pairs) {
+            String[] keyValue = pair.split("=");
+            String key = keyValue[0];
+            if (name.equals(key)) {
+                String value = keyValue[1];
+                matches.add(value);
+            }
+        }
+        if (matches.size() == 1) {
+            return matches.get(0);
+        } else {
+            throw new RuntimeException(String.format("Expected exactly one parameter matching '%s', got %d", name, matches.size()));
+        }
+    }
 }

@@ -1,5 +1,8 @@
 package com.seanshubin.hello.web;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public class NameValue {
@@ -31,5 +34,18 @@ public class NameValue {
     @Override
     public int hashCode() {
         return Objects.hash(name, value);
+    }
+
+    public static List<NameValue> createHeaders(String... namesAndValues) {
+        List<NameValue> headers = new ArrayList<>();
+        int index = 0;
+        while (index < namesAndValues.length / 2) {
+            String name = namesAndValues[index * 2];
+            String value = namesAndValues[index * 2 + 1];
+            NameValue nameValue = new NameValue(name, value);
+            headers.add(nameValue);
+            index++;
+        }
+        return Collections.unmodifiableList(headers);
     }
 }

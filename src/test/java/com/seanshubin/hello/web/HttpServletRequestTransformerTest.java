@@ -4,15 +4,12 @@ import org.junit.Test;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-public class HttpServletTransformerTest {
+public class HttpServletRequestTransformerTest {
     @Test
     public void transformTypicalRequest() {
         //given
@@ -54,7 +51,7 @@ public class HttpServletTransformerTest {
         };
 
         //when
-        RequestValue actualRequestValue = HttpServletTransformer.transformRequestValue(request);
+        RequestValue actualRequestValue = HttpServletRequestTransformer.transformRequest(request);
 
         //then
         assertThat(actualRequestValue, equalTo(expectedRequestValue));
@@ -88,15 +85,14 @@ public class HttpServletTransformerTest {
         return Collections.unmodifiableList(headers);
     }
 
-    public Map<String, String> createMap(String... keysAndValues){
+    public Map<String, String> createMap(String... keysAndValues) {
         Map<String, String> result = new HashMap<>();
         int index = 0;
-        while(index < keysAndValues.length / 2){
+        while (index < keysAndValues.length / 2) {
             String key = keysAndValues[index * 2];
-            String value = keysAndValues[index*2+1];
+            String value = keysAndValues[index * 2 + 1];
             result.put(key, value);
         }
         return result;
     }
-
 }
