@@ -13,7 +13,7 @@ public class HttpServletRequestTransformerTest {
     @Test
     public void transformTypicalRequest() {
         //given
-        List<NameValue> headers = createHeaders(
+        List<Header> headers = createHeaders(
                 "Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
                 "Upgrade-Insecure-Requests", "1",
                 "Connection", "keep-alive",
@@ -60,7 +60,7 @@ public class HttpServletRequestTransformerTest {
 
     @Test
     public void transformFaviconRequest() {
-        List<NameValue> headers = createHeaders(
+        List<Header> headers = createHeaders(
                 "Accept", "*/*",
                 "Connection", "keep-alive",
                 "User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36",
@@ -72,14 +72,14 @@ public class HttpServletRequestTransformerTest {
         RequestValue requestValue = new RequestValue("GET", "/favicon.ico", null, headers);
     }
 
-    private List<NameValue> createHeaders(String... namesAndValues) {
-        List<NameValue> headers = new ArrayList<>();
+    private List<Header> createHeaders(String... namesAndValues) {
+        List<Header> headers = new ArrayList<>();
         int index = 0;
         while (index < namesAndValues.length / 2) {
             String name = namesAndValues[index * 2];
             String value = namesAndValues[index * 2 + 1];
-            NameValue nameValue = new NameValue(name, value);
-            headers.add(nameValue);
+            Header header = new Header(name, value);
+            headers.add(header);
             index++;
         }
         return Collections.unmodifiableList(headers);

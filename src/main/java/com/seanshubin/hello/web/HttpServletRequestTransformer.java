@@ -11,11 +11,11 @@ public class HttpServletRequestTransformer {
         String uriString = httpServletRequest.getRequestURI();
         String query = httpServletRequest.getQueryString();
         Enumeration headerNames = httpServletRequest.getHeaderNames();
-        List<NameValue> headers = new ArrayList<>();
+        List<Header> headers = new ArrayList<>();
         while (headerNames.hasMoreElements()) {
             String name = (String) headerNames.nextElement();
             String value = httpServletRequest.getHeader(name);
-            NameValue header = new NameValue(name, value);
+            Header header = new Header(name, value);
             headers.add(header);
         }
         RequestValue request = new RequestValue(method, uriString, query, headers);

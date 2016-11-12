@@ -7,9 +7,9 @@ import java.util.Objects;
 public class ResponseValue {
     public final int statusCode;
     public final ArrayOfBytes body;
-    public final List<NameValue> headers;
+    public final List<Header> headers;
 
-    public ResponseValue(int statusCode, ArrayOfBytes body, List<NameValue> headers) {
+    public ResponseValue(int statusCode, ArrayOfBytes body, List<Header> headers) {
         this.statusCode = statusCode;
         this.body = body;
         this.headers = headers;
@@ -42,7 +42,7 @@ public class ResponseValue {
     public static ResponseValue plainTextUtf8(String s) {
         int statusCode = HttpServletResponse.SC_OK;
         ArrayOfBytes body = ArrayOfBytes.fromStringUtf8(s);
-        List<NameValue> headers = NameValue.createHeaders("Content-Type", "text/plain; charset=UTF-8");
+        List<Header> headers = Header.createHeaders("Content-Type", "text/plain; charset=UTF-8");
         ResponseValue response = new ResponseValue(statusCode, body, headers);
         return response;
     }

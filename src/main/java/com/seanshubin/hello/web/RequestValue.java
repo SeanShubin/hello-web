@@ -9,9 +9,9 @@ public class RequestValue {
     public final String method;
     public final String path;
     public final String query;
-    public final List<NameValue> headers;
+    public final List<Header> headers;
 
-    public RequestValue(String method, String path, String query, List<NameValue> headers) {
+    public RequestValue(String method, String path, String query, List<Header> headers) {
         this.method = method;
         this.path = path;
         this.query = query;

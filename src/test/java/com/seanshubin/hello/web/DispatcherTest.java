@@ -42,7 +42,7 @@ public class DispatcherTest {
         String method = "GET";
         String path = "/" + command;
         String query = String.format("target=%s", target);
-        List<NameValue> headers = Collections.emptyList();
+        List<Header> headers = Collections.emptyList();
         RequestValue requestValue = new RequestValue(method, path, query, headers);
         return requestValue;
     }

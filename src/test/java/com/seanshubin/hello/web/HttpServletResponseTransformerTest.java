@@ -17,7 +17,7 @@ public class HttpServletResponseTransformerTest {
     @Test
     public void transformTypicalResponse() {
         //given
-        List<NameValue> headers = NameValue.createHeaders("Content-Type", "text/plain; charset=UTF-8");
+        List<Header> headers = Header.createHeaders("Content-Type", "text/plain; charset=UTF-8");
 
         ResponseValue responseValue = new ResponseValue(HttpServletResponse.SC_OK, ArrayOfBytes.fromStringUtf8("body"), headers);
         StubResponse stubResponse = new StubResponse();
@@ -32,7 +32,7 @@ public class HttpServletResponseTransformerTest {
     class StubResponse extends HttpServletResponseNotImplemented {
         int lastStatus = -1;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        List<NameValue> headers = new ArrayList<>();
+        List<Header> headers = new ArrayList<>();
 
         @Override
         public void setStatus(int sc) {
@@ -51,7 +51,7 @@ public class HttpServletResponseTransformerTest {
 
         @Override
         public void addHeader(String name, String value) {
-            headers.add(new NameValue(name, value));
+            headers.add(new Header(name, value));
         }
     }
 }

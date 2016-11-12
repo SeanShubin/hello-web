@@ -1,0 +1,17 @@
+{
+  reportDir target/detangled
+  searchPaths
+  [
+    target/hello-web-1.0.war
+  ]
+  level 1
+  startsWith
+  {
+    include [[com seanshubin hello web]]
+    exclude []
+    drop [[com seanshubin hello web]]
+  }
+  ignoreFiles []
+  canFailBuild true
+  allowedInCycle []
+}
