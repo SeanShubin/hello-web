@@ -1,6 +1,5 @@
 package com.seanshubin.hello.web;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,8 +38,7 @@ public class ResponseValue {
         return Objects.hash(statusCode, body, headers);
     }
 
-    public static ResponseValue plainTextUtf8(String s) {
-        int statusCode = HttpServletResponse.SC_OK;
+    public static ResponseValue plainTextUtf8(int statusCode, String s) {
         ArrayOfBytes body = ArrayOfBytes.fromStringUtf8(s);
         List<Header> headers = Header.createHeaders("Content-Type", "text/plain; charset=UTF-8");
         ResponseValue response = new ResponseValue(statusCode, body, headers);

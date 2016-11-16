@@ -1,5 +1,6 @@
 package com.seanshubin.hello.web;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -15,9 +16,14 @@ public class DispatchHandler implements Handler {
 
     @Override
     public ResponseValue handle(RequestValue request) {
-        String target = request.singleQueryParameter("target");
-        String result = lookupCommand(request.path).apply(target);
-        return ResponseValue.plainTextUtf8(result);
+        Function<String, String> command = commandMap.get(request.path);
+        if (command == null) {
+            return ResponseValue.plainTextUtf8(HttpServletResponse.SC_NOT_FOUND, request.toString());
+        } else {
+            String target = request.singleQueryParameter("target");
+            String result = command.apply(target);
+            return ResponseValue.plainTextUtf8(HttpServletResponse.SC_OK, result);
+        }
     }
 
     private String displayLength(String target) {
@@ -26,13 +32,5 @@ public class DispatchHandler implements Handler {
 
     private String sayHello(String target) {
         return String.format("Hello, %s!", target);
-    }
-
-    private Function<String, String> lookupCommand(String key) {
-        if (commandMap.containsKey(key)) {
-            return commandMap.get(key);
-        } else {
-            throw new RuntimeException(String.format("Key not found: %s", key));
-        }
     }
 }

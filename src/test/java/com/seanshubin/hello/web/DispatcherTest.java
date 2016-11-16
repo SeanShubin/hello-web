@@ -2,6 +2,7 @@ package com.seanshubin.hello.web;
 
 import org.junit.Test;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class DispatcherTest {
         ResponseValue actual = dispatcher.handle(request);
 
         //then
-        ResponseValue expected = ResponseValue.plainTextUtf8("Hello, world!");
+        ResponseValue expected = ResponseValue.plainTextUtf8(HttpServletResponse.SC_OK, "Hello, world!");
 
         assertThat(actual, equalTo(expected));
     }
@@ -34,8 +35,29 @@ public class DispatcherTest {
         ResponseValue actual = dispatcher.handle(request);
 
         //then
-        ResponseValue expected = ResponseValue.plainTextUtf8("length: 5");
+        ResponseValue expected = ResponseValue.plainTextUtf8(HttpServletResponse.SC_OK, "length: 5");
         assertThat(actual, equalTo(expected));
+    }
+
+    @Test
+    public void unhandledRequest() {
+        //given
+        String method = "GET";
+        String path = "/favicon.ico";
+        String query = null;
+        List<Header> headers = Collections.emptyList();
+        RequestValue request = new RequestValue(method, path, query, headers);
+        Handler dispatcher = new DispatchHandler();
+
+        //when
+        ResponseValue actual = dispatcher.handle(request);
+
+        //then
+
+        ResponseValue expected = ResponseValue.plainTextUtf8(HttpServletResponse.SC_NOT_FOUND, "RequestValue{method='GET', path='/favicon.ico', query='null', headers=[]}");
+
+        assertThat(actual, equalTo(expected));
+
     }
 
     private RequestValue makeRequest(String command, String target) {

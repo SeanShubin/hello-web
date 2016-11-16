@@ -12,8 +12,8 @@
 - The intent here is to demonstrate that if you have logic you don't know how to unit test, you should try moving that logic somewhere that is easier to unit test.
 - map everything to the same entry point in your [web.xml](src/main/webapp/WEB-INF/web.xml)
     - When you have multiple entry points, something is deciding which entry point to use.
-    - This application behavior, so why it it not under unit test coverage?
-    - By moving this specification of behavior from an xml file to a file in a programming language, we make it easier to test.     
+    - This application behavior, so why is it not under unit test coverage?
+    - By moving this specification of behavior from an xml file to a file in a programming language, we make it easier to test.
 - make sure you code entry point never has reason to change: [EntryPointServlet](src/main/java/com/seanshubin/hello/web/EntryPointServlet.java)
     - you only need to unit test anything that could possibly break
     - your application logic has change with business needs
