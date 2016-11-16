@@ -7,3 +7,25 @@
     - navigate to
         - http://localhost:8080/hello?target=world
         - http://localhost:8080/length?target=world
+
+### Following the code 
+- The intent here is to demonstrate that if you have logic you don't know how to unit test, you should try moving that logic somewhere that is easier to unit test.
+- map everything to the same entry point in your [web.xml](src/main/webapp/WEB-INF/web.xml)
+    - When you have multiple entry points, something is deciding which entry point to use.
+    - This application behavior, so why it it not under unit test coverage?
+    - By moving this specification of behavior from an xml file to a file in a programming language, we make it easier to test.     
+- make sure you code entry point never has reason to change: [EntryPointServlet](src/main/java/com/seanshubin/hello/web/EntryPointServlet.java)
+    - you only need to unit test anything that could possibly break
+    - your application logic has change with business needs
+    - the rules for your application container don't change as often 
+- use dependency injection assemble app from unit testable parts: [DependencyInjection](src/main/java/com/seanshubin/hello/web/DependencyInjection.java)
+- create a layer between integration points and logic
+    - since both HttpServletRequest and HttpServletResponse are both behind a java interface, we can use fakes/stubs/mocks to verify any interaction we like
+    - alternatively, you can do what I have done here, create value objects that can be used in both production and test code 
+        - [TopLevelHttpServletRequestHandler](src/main/java/com/seanshubin/hello/web/TopLevelHttpServletRequestHandler.java)
+        - [RequestValue](src/main/java/com/seanshubin/hello/web/RequestValue.java)
+        - [ResponseValue](src/main/java/com/seanshubin/hello/web/ResponseValue.java)
+- now the dispatch is easy to unit test without spinning up a web server
+    - [DispatcherTest](src/test/java/com/seanshubin/hello/web/DispatcherTest.java)
+- making things easy to unit test is not technically challenging, it is a matter of making design decisions that favor ease of unit testing    
+    - [Types of Tests](http://seanshubin.com/types-of-tests.svg)
