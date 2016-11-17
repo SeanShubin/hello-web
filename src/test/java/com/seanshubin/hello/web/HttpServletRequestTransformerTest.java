@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-public class HttpServletRequestTransformerTest {
+ class HttpServletRequestTransformerTest {
     @Test
-    public void transformTypicalRequest() {
+     void transformTypicalRequest() {
         //given
         List<Header> headers = createHeaders(
                 "Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
@@ -59,7 +59,7 @@ public class HttpServletRequestTransformerTest {
     }
 
     @Test
-    public void transformFaviconRequest() {
+     void transformFaviconRequest() {
         List<Header> headers = createHeaders(
                 "Accept", "*/*",
                 "Connection", "keep-alive",
@@ -85,7 +85,7 @@ public class HttpServletRequestTransformerTest {
         return Collections.unmodifiableList(headers);
     }
 
-    public Map<String, String> createMap(String... keysAndValues) {
+     Map<String, String> createMap(String... keysAndValues) {
         Map<String, String> result = new HashMap<>();
         int index = 0;
         while (index < keysAndValues.length / 2) {

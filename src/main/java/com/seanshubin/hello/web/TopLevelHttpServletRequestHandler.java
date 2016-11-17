@@ -3,10 +3,10 @@ package com.seanshubin.hello.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class TopLevelHttpServletRequestHandler implements HttpServletRequestHandler {
+class TopLevelHttpServletRequestHandler implements HttpServletRequestHandler {
     private final Handler delegate;
 
-    public TopLevelHttpServletRequestHandler(Handler delegate) {
+    TopLevelHttpServletRequestHandler(Handler delegate) {
         this.delegate = delegate;
     }
 

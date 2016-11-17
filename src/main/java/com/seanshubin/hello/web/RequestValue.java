@@ -5,13 +5,13 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class RequestValue {
-    public final String method;
-    public final String path;
-    public final String query;
-    public final List<Header> headers;
+class RequestValue {
+    final String method;
+    final String path;
+    final String query;
+    final List<Header> headers;
 
-    public RequestValue(String method, String path, String query, List<Header> headers) {
+    RequestValue(String method, String path, String query, List<Header> headers) {
         this.method = method;
         this.path = path;
         this.query = query;
@@ -44,7 +44,7 @@ public class RequestValue {
         return Objects.hash(method, path, query, headers);
     }
 
-    public String singleQueryParameter(String name) {
+    String singleQueryParameter(String name) {
         String[] pairs = query.split("&");
         List<String> matches = new ArrayList<>();
         for (String pair : pairs) {

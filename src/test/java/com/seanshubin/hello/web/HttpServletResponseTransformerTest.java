@@ -13,9 +13,9 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
-public class HttpServletResponseTransformerTest {
+ class HttpServletResponseTransformerTest {
     @Test
-    public void transformTypicalResponse() {
+     void transformTypicalResponse() {
         //given
         List<Header> headers = Header.createHeaders("Content-Type", "text/plain; charset=UTF-8");
 

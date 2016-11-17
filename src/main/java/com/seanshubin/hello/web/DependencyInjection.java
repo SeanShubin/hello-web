@@ -2,28 +2,13 @@ package com.seanshubin.hello.web;
 
 import javax.servlet.ServletConfig;
 
-public class DependencyInjection {
-    private ServletConfig servletConfig;
-
-    public DependencyInjection(ServletConfig servletConfig) {
-        this.servletConfig = servletConfig;
+class DependencyInjection {
+    DependencyInjection(ServletConfig servletConfig) {
+        // Servlet config not needed right now,
+        // I only left this in to demonstrate how this information
+        // would be passed along from the EntryPointServlet if it was needed.
     }
 
-    private Handler dispatcher;
-
-    public synchronized Handler dispatcher() {
-        if (dispatcher == null) {
-            dispatcher = new DispatchHandler();
-        }
-        return dispatcher;
-    }
-
-    private HttpServletRequestHandler httpServletRequestHandler;
-
-    public synchronized HttpServletRequestHandler httpServletRequestHandler() {
-        if (httpServletRequestHandler == null) {
-            httpServletRequestHandler = new TopLevelHttpServletRequestHandler(dispatcher());
-        }
-        return httpServletRequestHandler;
-    }
+    final Handler dispatcher = new DispatchHandler();
+    final HttpServletRequestHandler httpServletRequestHandler = new TopLevelHttpServletRequestHandler(dispatcher);
 }

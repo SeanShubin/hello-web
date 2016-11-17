@@ -1,6 +1,7 @@
 package com.seanshubin.hello.web;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import java.util.Enumeration;
 import java.util.Locale;
 import java.util.Map;
 
-public abstract class HttpServletRequestNotImplemented implements HttpServletRequest {
+abstract class HttpServletRequestNotImplemented implements HttpServletRequest {
     @Override
     public String getAuthType() {
         throw new UnsupportedOperationException("Not Implemented!");
@@ -134,6 +135,11 @@ public abstract class HttpServletRequestNotImplemented implements HttpServletReq
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
+    /**
+     * @deprecated As of Version 2.1 of the Java Servlet
+     * API, use {@link #isRequestedSessionIdFromURL}
+     * instead.
+     */
     @Override
     public boolean isRequestedSessionIdFromUrl() {
         throw new UnsupportedOperationException("Not Implemented!");
@@ -259,6 +265,10 @@ public abstract class HttpServletRequestNotImplemented implements HttpServletReq
         throw new UnsupportedOperationException("Not Implemented!");
     }
 
+    /**
+     * @deprecated As of Version 2.1 of the Java Servlet API,
+     * use {@link ServletContext#getRealPath} instead.
+     */
     @Override
     public String getRealPath(String path) {
         throw new UnsupportedOperationException("Not Implemented!");

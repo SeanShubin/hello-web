@@ -5,11 +5,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-public class Header {
-    public final String name;
-    public final String value;
+class Header {
+    final String name;
+    final String value;
 
-    public Header(String name, String value) {
+    Header(String name, String value) {
         this.name = name;
         this.value = value;
     }
@@ -36,7 +36,7 @@ public class Header {
         return Objects.hash(name, value);
     }
 
-    public static List<Header> createHeaders(String... namesAndValues) {
+    static List<Header> createHeaders(String... namesAndValues) {
         List<Header> headers = new ArrayList<>();
         int index = 0;
         while (index < namesAndValues.length / 2) {

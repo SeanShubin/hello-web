@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Locale;
 
-public abstract class HttpServletResponseNotImplemented implements HttpServletResponse {
+abstract class HttpServletResponseNotImplemented implements HttpServletResponse {
     @Override
     public void addCookie(Cookie cookie) {
         throw new UnsupportedOperationException("Not Implemented!");
@@ -29,12 +29,11 @@ public abstract class HttpServletResponseNotImplemented implements HttpServletRe
     }
 
     /**
-     * @param url the url to be encoded.
+     * @deprecated As of version 2.1, use encodeURL(String url) instead
+     * @param    url    the url to be encoded.
      * @return the encoded URL if encoding is needed;
      * the unchanged URL otherwise.
-     * @deprecated As of version 2.1, use encodeURL(String url) instead
      */
-
     @Override
     public String encodeUrl(String url) {
         throw new UnsupportedOperationException("Not Implemented!");
@@ -47,7 +46,6 @@ public abstract class HttpServletResponseNotImplemented implements HttpServletRe
      * @deprecated As of version 2.1, use
      * encodeRedirectURL(String url) instead
      */
-
     @Override
     public String encodeRedirectUrl(String url) {
         throw new UnsupportedOperationException("Not Implemented!");
@@ -113,7 +111,6 @@ public abstract class HttpServletResponseNotImplemented implements HttpServletRe
      * <p>
      * Sets the status code and message for this response.
      */
-
     @Override
     public void setStatus(int sc, String sm) {
         throw new UnsupportedOperationException("Not Implemented!");

@@ -7,6 +7,7 @@
     - navigate to
         - http://localhost:8080/hello?target=world
         - http://localhost:8080/length?target=world
+- more about [jetty-runner](http://www.eclipse.org/jetty/documentation/current/runner.html)
 
 ### Following the code 
 - The intent here is to demonstrate that if you have logic you don't know how to unit test, you should try moving that logic somewhere that is easier to unit test.

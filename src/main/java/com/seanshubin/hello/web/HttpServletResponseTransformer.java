@@ -2,8 +2,8 @@ package com.seanshubin.hello.web;
 
 import javax.servlet.http.HttpServletResponse;
 
-public class HttpServletResponseTransformer {
-    public static void transformResponse(ResponseValue response, HttpServletResponse httpServletResponse) {
+class HttpServletResponseTransformer {
+    static void transformResponse(ResponseValue response, HttpServletResponse httpServletResponse) {
         UncheckedHttpServletResponse uncheckedHttpServletResponse = new UncheckedHttpServletResponse(httpServletResponse);
         httpServletResponse.setStatus(response.statusCode);
         for (Header header : response.headers) {

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class EntryPointServlet extends HttpServlet {
+class EntryPointServlet extends HttpServlet {
     private static DependencyInjection dependencyInjection;
 
     @Override
@@ -17,6 +17,6 @@ public class EntryPointServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        dependencyInjection.httpServletRequestHandler().handle(request, response);
+        dependencyInjection.httpServletRequestHandler.handle(request, response);
     }
 }

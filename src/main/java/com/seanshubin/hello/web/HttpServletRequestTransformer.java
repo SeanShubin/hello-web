@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-public class HttpServletRequestTransformer {
-    public static RequestValue transformRequest(HttpServletRequest httpServletRequest) {
+class HttpServletRequestTransformer {
+    static RequestValue transformRequest(HttpServletRequest httpServletRequest) {
         String method = httpServletRequest.getMethod();
         String uriString = httpServletRequest.getRequestURI();
         String query = httpServletRequest.getQueryString();

@@ -3,12 +3,12 @@ package com.seanshubin.hello.web;
 import java.util.List;
 import java.util.Objects;
 
-public class ResponseValue {
-    public final int statusCode;
-    public final ArrayOfBytes body;
-    public final List<Header> headers;
+class ResponseValue {
+    final int statusCode;
+    final ArrayOfBytes body;
+    final List<Header> headers;
 
-    public ResponseValue(int statusCode, ArrayOfBytes body, List<Header> headers) {
+    ResponseValue(int statusCode, ArrayOfBytes body, List<Header> headers) {
         this.statusCode = statusCode;
         this.body = body;
         this.headers = headers;
@@ -38,7 +38,7 @@ public class ResponseValue {
         return Objects.hash(statusCode, body, headers);
     }
 
-    public static ResponseValue plainTextUtf8(int statusCode, String s) {
+    static ResponseValue plainTextUtf8(int statusCode, String s) {
         ArrayOfBytes body = ArrayOfBytes.fromStringUtf8(s);
         List<Header> headers = Header.createHeaders("Content-Type", "text/plain; charset=UTF-8");
         ResponseValue response = new ResponseValue(statusCode, body, headers);
