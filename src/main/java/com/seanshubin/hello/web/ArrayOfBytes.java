@@ -6,7 +6,7 @@ import java.util.Arrays;
 class ArrayOfBytes {
     private final byte[] bytes;
 
-    ArrayOfBytes(byte[] bytes) {
+    private ArrayOfBytes(byte[] bytes) {
         this.bytes = Arrays.copyOf(bytes, bytes.length);
     }
 

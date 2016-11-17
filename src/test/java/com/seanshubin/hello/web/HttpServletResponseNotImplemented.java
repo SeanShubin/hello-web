@@ -29,10 +29,10 @@ abstract class HttpServletResponseNotImplemented implements HttpServletResponse 
     }
 
     /**
-     * @deprecated As of version 2.1, use encodeURL(String url) instead
-     * @param    url    the url to be encoded.
+     * @param url the url to be encoded.
      * @return the encoded URL if encoding is needed;
      * the unchanged URL otherwise.
+     * @deprecated As of version 2.1, use encodeURL(String url) instead
      */
     @Override
     public String encodeUrl(String url) {
