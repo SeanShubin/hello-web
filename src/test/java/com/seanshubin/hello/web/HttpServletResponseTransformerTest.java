@@ -13,9 +13,9 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
- class HttpServletResponseTransformerTest {
+public class HttpServletResponseTransformerTest {
     @Test
-     void transformTypicalResponse() {
+    public void transformTypicalResponse() {
         //given
         List<Header> headers = Header.createHeaders("Content-Type", "text/plain; charset=UTF-8");
 
@@ -29,7 +29,7 @@ import static org.junit.Assert.assertThat;
         assertThat(new String(stubResponse.byteArrayOutputStream.toByteArray(), StandardCharsets.UTF_8), equalTo("body"));
     }
 
-    class StubResponse extends HttpServletResponseNotImplemented {
+    private class StubResponse extends HttpServletResponseNotImplemented {
         int lastStatus = -1;
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         List<Header> headers = new ArrayList<>();

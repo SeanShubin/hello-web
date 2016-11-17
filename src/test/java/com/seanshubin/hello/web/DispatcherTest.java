@@ -9,9 +9,9 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
- class DispatcherTest {
+public class DispatcherTest {
     @Test
-     void sayHelloToWorld() {
+    public void sayHelloToWorld() {
         //given
         RequestValue request = makeRequest("hello", "world");
         Handler dispatcher = new DispatchHandler();
@@ -26,7 +26,7 @@ import static org.junit.Assert.assertThat;
     }
 
     @Test
-     void displayLength() {
+    public void displayLength() {
         //given
         RequestValue request = makeRequest("length", "world");
         Handler dispatcher = new DispatchHandler();
@@ -40,7 +40,7 @@ import static org.junit.Assert.assertThat;
     }
 
     @Test
-     void unhandledRequest() {
+    public void unhandledRequest() {
         //given
         String method = "GET";
         String path = "/favicon.ico";
