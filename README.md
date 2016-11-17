@@ -1,6 +1,8 @@
 ### Sample Java Web Archive Project
-- Demonstrates how to get dispatch under unit test coverage
-- steps to run
+- Try to make sure all of your behavior is under unit test coverage
+- If you find logic without a unit test, you have probably uncovered a part of your system that is unnecessarily difficult to maintain
+- Consider the case of web dispatch.  It is common to check each possible http path with a test that spins up a web server, but is this an informed design choice or unnecessary complexity stemming from bad assumptions? 
+- Before beginning, be sure you can actually run the example
     - mvn package
     - java -jar jetty-runner.jar target/hello-web-1.0.war
     - open a web browser
@@ -28,5 +30,10 @@
         - [ResponseValue](src/main/java/com/seanshubin/hello/web/ResponseValue.java)
 - now the dispatch is easy to unit test without spinning up a web server
     - [DispatcherTest](src/test/java/com/seanshubin/hello/web/DispatcherTest.java)
-- making things easy to unit test is not technically challenging, it is a matter of making design decisions that favor ease of unit testing    
-    - [Types of Tests](http://seanshubin.com/types-of-tests.svg)
+- [Types of Tests](http://seanshubin.com/types-of-tests.svg)
+- making things easy to unit test is not technically challenging, it is a matter of making design decisions that favor ease of unit testing
+- thinking of it as test driven design is helpful in that it emphasises how unit tests make the design of your code better
+    - checking for correctness is an important, but secondary concern
+    - if your code is incorrect but you have a good design, it is easy to fix
+    - if your code is correct but you have a bad design, it becomes increasingly more difficult over time to maintain correctness as the code needs to change
+- any time you see conditional logic without a unit test, push that logic away from a container/framework, and towards a programming language, where it is easy to unit test

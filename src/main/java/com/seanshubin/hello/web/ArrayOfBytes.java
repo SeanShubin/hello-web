@@ -3,6 +3,11 @@ package com.seanshubin.hello.web;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 
+// Java does not have an immutable array type.
+// There are many ways to deal with this.
+// For my purposes it is sufficient to use encapsulation
+// and defensive copies to protect the byte array from
+// the extra complexity inherent is relying on mutable state.
 class ArrayOfBytes {
     private final byte[] bytes;
 
