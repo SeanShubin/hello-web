@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-class DispatchHandler implements Handler {
+class Dispatcher implements Handler {
     private Map<String, Function<String, String>> commandMap;
 
-    DispatchHandler() {
+    Dispatcher() {
         commandMap = new HashMap<>();
         commandMap.put("/hello", this::sayHello);
         commandMap.put("/length", this::displayLength);

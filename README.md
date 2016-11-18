@@ -30,6 +30,7 @@
         - [ResponseValue](src/main/java/com/seanshubin/hello/web/ResponseValue.java)
 - now the dispatch is easy to unit test without spinning up a web server
     - [DispatcherTest](src/test/java/com/seanshubin/hello/web/DispatcherTest.java)
+    - [Dispatcher](src/main/java/com/seanshubin/hello/web/Dispatcher.java)
 - [Types of Tests](http://seanshubin.com/types-of-tests.svg)
 - making things easy to unit test is not technically challenging, it is a matter of making design decisions that favor ease of unit testing
 - thinking of it as test driven design is helpful in that it emphasises how unit tests make the design of your code better

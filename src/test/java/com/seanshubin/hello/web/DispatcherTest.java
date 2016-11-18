@@ -14,7 +14,7 @@ public class DispatcherTest {
     public void sayHelloToWorld() {
         //given
         RequestValue request = makeRequest("hello", "world");
-        Handler dispatcher = new DispatchHandler();
+        Handler dispatcher = new Dispatcher();
 
         //when
         ResponseValue actual = dispatcher.handle(request);
@@ -29,7 +29,7 @@ public class DispatcherTest {
     public void displayLength() {
         //given
         RequestValue request = makeRequest("length", "world");
-        Handler dispatcher = new DispatchHandler();
+        Handler dispatcher = new Dispatcher();
 
         //when
         ResponseValue actual = dispatcher.handle(request);
@@ -47,7 +47,7 @@ public class DispatcherTest {
         String query = null;
         List<Header> headers = Collections.emptyList();
         RequestValue request = new RequestValue(method, path, query, headers);
-        Handler dispatcher = new DispatchHandler();
+        Handler dispatcher = new Dispatcher();
 
         //when
         ResponseValue actual = dispatcher.handle(request);
