@@ -1,4 +1,5 @@
 ### Sample Java Web Archive Project
+- [YouTube](https://www.youtube.com/watch?v=_ppr-qSWv2A)
 - Try to make sure all of your behavior is under unit test coverage
 - If you find logic without a unit test, you have probably uncovered a part of your system that is unnecessarily difficult to maintain
 - Consider the case of web dispatch.  It is common to check each possible http path with a test that spins up a web server, but is this an informed design choice or unnecessary complexity stemming from bad assumptions? 
