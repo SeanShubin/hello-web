@@ -1,12 +1,5 @@
-**/.idea
-**/out
-**/*.iml
-**/*.ipr
-**/*.iws
-**/target
-generated
-local-config
-*~
-*#
-.#*
-gui/src/main/resources/serve-from-classpath/lib/
+.idea
+*.iml
+jetty-runner.jar
+target
+
