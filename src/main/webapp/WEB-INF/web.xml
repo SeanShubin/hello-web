@@ -1,4 +1,4 @@
-<web-app>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
     <servlet>
         <servlet-name>entry-point</servlet-name>
         <servlet-class>com.seanshubin.hello.web.EntryPointServlet</servlet-class>
