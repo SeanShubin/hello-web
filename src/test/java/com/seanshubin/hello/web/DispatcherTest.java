@@ -4,68 +4,80 @@ import org.junit.Test;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 
 public class DispatcherTest {
     @Test
-    public void sayHelloToWorld() {
+    public void invokeMatchingHandler() {
         //given
-        RequestValue request = makeRequest("hello", "world");
-        Handler dispatcher = new Dispatcher();
+        DispatchMappingsStub dispatchMappings = new DispatchMappingsStub("foo", "bar");
+        RequestValue request = makeRequest("foo");
+        Handler dispatcher = new Dispatcher(dispatchMappings);
 
         //when
         ResponseValue actual = dispatcher.handle(request);
 
         //then
-        ResponseValue expected = ResponseValue.plainTextUtf8(HttpServletResponse.SC_OK, "Hello, world!");
+        ResponseValue expected = ResponseValue.plainTextUtf8(HttpServletResponse.SC_OK, "foo response");
 
         assertThat(actual, equalTo(expected));
     }
-
-    @Test
-    public void displayLength() {
-        //given
-        RequestValue request = makeRequest("length", "world");
-        Handler dispatcher = new Dispatcher();
-
-        //when
-        ResponseValue actual = dispatcher.handle(request);
-
-        //then
-        ResponseValue expected = ResponseValue.plainTextUtf8(HttpServletResponse.SC_OK, "length: 5");
-        assertThat(actual, equalTo(expected));
-    }
-
     @Test
     public void unhandledRequest() {
         //given
+        DispatchMappingsStub dispatchMappings = new DispatchMappingsStub();
         String method = "GET";
         String path = "/favicon.ico";
         String query = null;
         List<Header> headers = Collections.emptyList();
         RequestValue request = new RequestValue(method, path, query, headers);
-        Handler dispatcher = new Dispatcher();
+        Handler dispatcher = new Dispatcher(dispatchMappings);
 
         //when
         ResponseValue actual = dispatcher.handle(request);
 
         //then
 
-        ResponseValue expected = ResponseValue.plainTextUtf8(HttpServletResponse.SC_NOT_FOUND, "RequestValue{method='GET', path='/favicon.ico', query='null', headers=[]}");
+        ResponseValue expected = ResponseValue.plainTextUtf8(HttpServletResponse.SC_NOT_FOUND, "Unable to handle request at path '/favicon.ico'");
+
+        System.out.println(expected.body.toStringUtf8());
+        System.out.println(actual.body.toStringUtf8());
 
         assertThat(actual, equalTo(expected));
 
     }
 
-    private RequestValue makeRequest(String command, String target) {
+    private RequestValue makeRequest(String command) {
         String method = "GET";
         String path = "/" + command;
-        String query = String.format("target=%s", target);
+        String query = null;
         List<Header> headers = Collections.emptyList();
         RequestValue requestValue = new RequestValue(method, path, query, headers);
         return requestValue;
     }
+
+    private Handler createSampleHandler(String bodyText) {
+        return request -> ResponseValue.plainTextUtf8(200, bodyText + " response");
+    }
+
+    class DispatchMappingsStub implements DispatchMappings {
+        private final Map<String, Handler> map = new HashMap<>();
+
+        public DispatchMappingsStub(String... handlerNames) {
+            for (String handlerName : handlerNames) {
+                map.put("/"+handlerName, createSampleHandler(handlerName));
+            }
+        }
+
+        @Override
+        public Handler lookupByPath(String path) {
+            return map.get(path);
+        }
+    }
+
 }

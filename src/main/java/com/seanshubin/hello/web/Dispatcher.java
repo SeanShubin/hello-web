@@ -1,36 +1,25 @@
 package com.seanshubin.hello.web;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.function.Function;
 
 class Dispatcher implements Handler {
-    private Map<String, Function<String, String>> commandMap;
+    private final DispatchMappings dispatchMappings;
 
-    Dispatcher() {
-        commandMap = new HashMap<>();
-        commandMap.put("/hello", this::sayHello);
-        commandMap.put("/length", this::displayLength);
+    public Dispatcher(DispatchMappings dispatchMappings) {
+        this.dispatchMappings = dispatchMappings;
     }
 
     @Override
     public ResponseValue handle(RequestValue request) {
-        Function<String, String> command = commandMap.get(request.path);
-        if (command == null) {
-            return ResponseValue.plainTextUtf8(HttpServletResponse.SC_NOT_FOUND, request.toString());
+        Handler handler = dispatchMappings.lookupByPath(request.path);
+        final ResponseValue responseValue;
+        if (handler == null) {
+            String message = String.format("Unable to handle request at path '%s'", request.path);
+            responseValue = ResponseValue.plainTextUtf8(HttpServletResponse.SC_NOT_FOUND, message);
         } else {
-            String target = request.singleQueryParameter("target");
-            String result = command.apply(target);
-            return ResponseValue.plainTextUtf8(HttpServletResponse.SC_OK, result);
+            responseValue = handler.handle(request);
         }
-    }
-
-    private String displayLength(String target) {
-        return String.format("length: %d", target.length());
-    }
-
-    private String sayHello(String target) {
-        return String.format("Hello, %s!", target);
+        return responseValue;
     }
 }

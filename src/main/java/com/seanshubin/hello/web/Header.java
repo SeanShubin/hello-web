@@ -48,4 +48,8 @@ class Header {
         }
         return Collections.unmodifiableList(headers);
     }
+
+    static List<Header> plainTextUtf8() {
+        return createHeaders("Content-Type", "text/plain; charset=UTF-8");
+    }
 }
