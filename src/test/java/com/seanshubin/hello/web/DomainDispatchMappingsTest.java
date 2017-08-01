@@ -12,11 +12,9 @@ public class DomainDispatchMappingsTest {
     public void dispatchMappingsUsingCorrectImplementations() {
         assertThat(implementationFor("/hello"), is("HelloHandler"));
         assertThat(implementationFor("/add"), is("AddHandler"));
-        assertThat(implementationFor("/foo"), is("NotFoundHandler"));
-        assertThat(implementationFor("/bar"), is("NotFoundHandler"));
     }
 
     String implementationFor(String path) {
-        return dispatchMappings.lookupByPath(path).getClass().getSimpleName();
+        return dispatchMappings.lookupByPath(path).get().getClass().getSimpleName();
     }
 }

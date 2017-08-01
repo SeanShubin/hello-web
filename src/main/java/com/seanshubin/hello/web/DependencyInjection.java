@@ -13,7 +13,8 @@ class DependencyInjection {
     // Should these be lazy?
     // Easy enough to implement, but not needed yet.
     // Don't assume you need complexity until you can measure the cost of living without that complexity.
+    private final Handler defaultHandler = new NotFoundHandler();
     private final DispatchMappings dispatchMappings = new DomainDispatchMappings();
-    private final Handler dispatcher = new Dispatcher(dispatchMappings);
+    private final Handler dispatcher = new Dispatcher(dispatchMappings, defaultHandler);
     final HttpServletRequestHandler httpServletRequestHandler = new TopLevelHttpServletRequestHandler(dispatcher);
 }

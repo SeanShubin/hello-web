@@ -2,9 +2,9 @@ package com.seanshubin.hello.web;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public class DomainDispatchMappings implements DispatchMappings {
-    private final Handler defaultHandler = new NotFoundHandler();
     private final Map<String, Handler> handlers;
 
     public DomainDispatchMappings() {
@@ -14,7 +14,7 @@ public class DomainDispatchMappings implements DispatchMappings {
     }
 
     @Override
-    public Handler lookupByPath(String path) {
-        return handlers.getOrDefault(path, defaultHandler);
+    public Optional<Handler> lookupByPath(String path) {
+        return Optional.ofNullable(handlers.get(path));
     }
 }
