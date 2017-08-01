@@ -8,8 +8,8 @@
     - java -jar jetty-runner.jar target/hello-web-1.0.war
     - open a web browser
     - navigate to
-        - [http://localhost:8080/hello?target=world](http://localhost:8080/length?target=world)
-        - [http://localhost:8080/add?left=2&right=5](http://localhost:8080/length?target=world)
+        - [http://localhost:8080/hello?target=world](http://localhost:8080/hello?target=world)
+        - [http://localhost:8080/add?left=2&right=5](http://localhost:8080/add?left=2&right=3)
 - more about [jetty-runner](http://www.eclipse.org/jetty/documentation/current/runner.html)
 
 ### Following the code 
