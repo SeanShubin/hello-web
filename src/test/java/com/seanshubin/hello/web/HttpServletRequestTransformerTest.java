@@ -50,10 +50,8 @@ public class HttpServletRequestTransformerTest {
                 return headers.stream().filter(nameValue -> nameValue.name.equals(name)).findFirst().get().value;
             }
         };
-
         //when
         RequestValue actualRequestValue = HttpServletRequestTransformer.transformRequest(request);
-
         //then
         assertThat(actualRequestValue, equalTo(expectedRequestValue));
     }

@@ -2,7 +2,7 @@ package com.seanshubin.hello.web;
 
 import javax.servlet.http.HttpServletResponse;
 
-public class HelloHandler implements HelloHandlerMarker {
+public class HelloHandler implements Handler {
     @Override
     public ResponseValue handle(RequestValue request) {
         String target = request.singleQueryParameter("target");

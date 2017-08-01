@@ -18,12 +18,10 @@ public class HttpServletResponseTransformerTest {
     public void transformTypicalResponse() {
         //given
         List<Header> headers = Header.createHeaders("Content-Type", "text/plain; charset=UTF-8");
-
         ResponseValue responseValue = new ResponseValue(HttpServletResponse.SC_OK, ArrayOfBytes.fromStringUtf8("body"), headers);
         StubResponse stubResponse = new StubResponse();
         //when
         HttpServletResponseTransformer.transformResponse(responseValue, stubResponse);
-
         //then
         assertThat(stubResponse.lastStatus, equalTo(HttpServletResponse.SC_OK));
         assertThat(new String(stubResponse.byteArrayOutputStream.toByteArray(), StandardCharsets.UTF_8), equalTo("body"));

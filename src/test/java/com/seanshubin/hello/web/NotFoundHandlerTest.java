@@ -9,20 +9,20 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-public class AddHandlerTest {
+public class NotFoundHandlerTest {
     @Test
     public void addNumbers() {
         // given
-        Handler addHandler = new AddHandler();
+        Handler notFoundHandler = new NotFoundHandler();
         String method = "GET";
-        String path = "/add";
-        String query = "left=2&right=3";
+        String path = "/foo";
+        String query = "bar";
         List<Header> headers = Collections.emptyList();
         RequestValue request = new RequestValue(method, path, query, headers);
         // when
-        ResponseValue response = addHandler.handle(request);
+        ResponseValue response = notFoundHandler.handle(request);
         // then
-        assertThat(response.statusCode, is(HttpServletResponse.SC_OK));
-        assertThat(response.body.toStringUtf8(), is("2 + 3 = 5"));
+        assertThat(response.statusCode, is(HttpServletResponse.SC_NOT_FOUND));
+        assertThat(response.body.toStringUtf8(), is("Unable to handle request at path '/foo'"));
     }
 }

@@ -2,7 +2,7 @@ package com.seanshubin.hello.web;
 
 import javax.servlet.http.HttpServletResponse;
 
-public class AddHandler implements AddHandlerMarker {
+public class AddHandler implements Handler {
     @Override
     public ResponseValue handle(RequestValue request) {
         String leftString = request.singleQueryParameter("left");
