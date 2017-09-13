@@ -9,7 +9,12 @@
     - open a web browser
     - navigate to
         - [http://localhost:8080/hello?target=world](http://localhost:8080/hello?target=world)
+    - you should see the text
+        - `Hello, world!`
+    - navigate to
         - [http://localhost:8080/add?left=2&right=5](http://localhost:8080/add?left=2&right=3)
+    - you should see the text
+        - `2 + 3 = 5`
 - more about [jetty-runner](http://www.eclipse.org/jetty/documentation/current/runner.html)
 
 ### Following the code 
